@@ -1,0 +1,53 @@
+#Although equipped with technology, Iron mans suit is not infinite.
+#The code below simulates Iron mans depletion in armory and projectiles!
+defence = ['shield', 'decoy', 'flight']
+attack = ['ion cannon', 'repulsor blaster', 'missiles']
+
+while True:
+    try:
+        suitcharge = int(input('Enter starting level: '))
+        break
+    except ValueError:
+        print('Please enter a valid integer.')
+    
+
+while suitcharge > 0:
+
+    try:
+        choice = int(input(
+            "Choose an attack or defense to perform.\n"
+            "1. Shield (-10%)\n"
+            "2. Decoy (-10%)\n"
+            "3. Flight (-10%)\n"
+            "4. Ion Cannon (-20%)\n"
+            "5. Repulsor Blaster (-20%)\n"
+            "6. Missiles (-20%)\n"
+        )) - 1
+    except ValueError:
+        print("Please enter a valid integer.")
+        continue
+
+    if choice in range(0, 3):
+        suitcharge -= 10
+        print(f"Defense applied: {defence[choice]}. 10% Battery used. Remaining: {suitcharge}%")
+
+    elif choice in range(3, 6) and suitcharge != 10:
+        suitcharge -= 20
+        print(f"Attack performed: {attack[choice - 3]}. 20% Battery used. Remaining: {suitcharge}%")
+
+    elif choice in range(3,6) and suitcharge == 10:
+        suitcharge += 0
+        print('Not enough charge! Only ' + str(suitcharge) + '%' ' left!')
+    else:
+        print("Nice try, you are outta bounds!")
+
+    #if suitcharge == 10 and choice in range (3,6):
+        #print('That option will take too much energy, choose another!')
+       
+
+
+
+
+
+    if suitcharge <= 0:
+        print("Suit has depleted all its charge. Iron Man's suit is no longer operational.")    
